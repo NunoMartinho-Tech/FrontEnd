@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Login{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #DFDFDF;
+    min-height: 100vh;
+}
+
+.imagem{
+    width: 450px;
+    height: 250px;
+}
+
+.figuras{
+    width: 400px;
+    height: 300px;
+}
+
+.bg{
+    background-image: url("../assets/images/Fundo.png");
+    height: 900px;
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
