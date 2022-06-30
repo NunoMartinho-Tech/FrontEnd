@@ -1,37 +1,58 @@
 import React, {useState, useEffect} from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom"
 
-import NavBar from './components/NavBar';
-import Dasboard from './pages/dashboard';
-import ListUtilizadores from './pages/list_utilizadores';
-import ListSalas from './pages/list_sala';
-import ListCentros from './pages/list_centros';
-import AddUtilizadores from './pages/add_utilizador';
-import AddSalas from './pages/add_sala';
-import AddCentros from './pages/add_centro';
-import EditUtilizadores from './pages/edit_utilizador';
-import EditSalas from './pages/edit_sala';
-import EditCentros from './pages/edit_centro';
-import Login from './pages/Login';
+import LandingPage from './components/LandingPage';
+import UserHome from './components/Home'
+import Login from './components/Login';
+import ProtectedRoute from './components/Routes/private';
+import axios from "axios";
 
 function App() {
 
+  const[isAuth,SetIsAuth] = useState(false);
+  const[user,SetUser] = useState("");
+
+  function getUser (data) {
+        axios.get('utilizadores/get',{params:data})
+        .then(
+          res =>{
+            SetUser(res.data.data)
+          })
+        .catch(error=>{
+          alert("Error:" + error)
+        })
+  }
+
+  useEffect(){
+    const data = {
+      id: localStorage.getItem("id")
+    }
+    if(data.id){
+      getUser(data)
+    }
+  }
+
   return (
     <Router>
-      <NavBar/>
-      <Routes>
-        <Route path="/login" exact element={<Login/>}/>
-        <Route path="/" exact element={<Dasboard />}/>
-        <Route path="/utilizadores/list" element={<ListUtilizadores/>}/>
-        <Route path="/utilizadores/add" element={<AddUtilizadores />}/>
-        <Route path="/utilizadores/get/:id" element={<EditUtilizadores />}/>
-        <Route path="/salas/list" element={<ListSalas />}/>
-        <Route path="/salas/add" element={<AddSalas/>}/>
-        <Route path="/salas/get/:id" element={<EditSalas/>}/>
-        <Route path="/centros/list" element={<ListCentros/>}/>
-        <Route path="/centros/add" element={<AddCentros/>}/>
-        <Route path="/centros/get/:id" element={<EditCentros/>}/>
-      </Routes>
+      <div>
+        <Routes>
+
+          <Route exact path="/">
+            if(isAuth){
+              <Navigate  to="/home/dasboard"/>
+            }else{
+              <LandingPage/>
+            }
+          </Route>
+
+          <Route path="/login">
+            <Login isAuth={isAuth}/>
+          </Route>
+
+          <ProtectedRoute path="/home" component={()=>{<UserHome user={user} setUser={SetUser}/>}} isAuth={isAuth}/>
+
+        </Routes>
+      </div>
     </Router>
   );
 }
