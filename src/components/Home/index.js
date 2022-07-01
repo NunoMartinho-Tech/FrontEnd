@@ -2,7 +2,7 @@ import React from 'react'
 import LandingPage from '../LandingPage';
 import HomeUser from '../Routes/home';
 
-function UserHome({user: user, setUser: setUser,  ...rest}) {
+function UserHome({user, setUser,  ...rest}) {
   if(user){
     return(<HomeUser setUser={setUser} />)
   }

@@ -23,33 +23,25 @@ function App() {
         })
   }
 
-  useEffect(){
+  useEffect(()=>{
     const data = {
       id: localStorage.getItem("id")
     }
     if(data.id){
       getUser(data)
     }
-  }
+  })
 
   return (
     <Router>
       <div>
         <Routes>
 
-          <Route exact path="/">
-            if(isAuth){
-              <Navigate  to="/home/dasboard"/>
-            }else{
-              <LandingPage/>
-            }
-          </Route>
+          <Route exact path="/" element={user ? <Navigate to="/home/dasboard"/> : <LandingPage/>}/>
 
-          <Route path="/login">
-            <Login isAuth={isAuth}/>
-          </Route>
+          <Route path="/login" element={<Login isAuth={isAuth}/>}/>
 
-          <ProtectedRoute path="/home" component={()=>{<UserHome user={user} setUser={SetUser}/>}} isAuth={isAuth}/>
+          {/* <Route path="/home" element={<ProtectedRoute path="/home" component={()=>{<UserHome user={user} setUser={SetUser}/>}} isAuth={isAuth}/>}/> */}
 
         </Routes>
       </div>

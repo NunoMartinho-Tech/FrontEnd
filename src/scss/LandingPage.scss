@@ -1,0 +1,53 @@
+@import './variaveis.scss';
+
+.Menu{
+    background-color: $CinzentoClaro;
+}
+
+.Brand{
+    width: 200px;
+    height: 100px;
+}
+
+.Lista{
+    list-style: none;
+    text-decoration: none;
+    margin: 0px 10px 0px 10px
+}
+
+.Link{
+    text-decoration: none;
+}
+
+.botao{
+    margin-left: 20px;
+}
+
+.hero{
+    background-color: $Branco;
+    font-family: $font-family;
+}
+
+.heroImagem{
+    width: 700px;
+    height: 600px;
+}
+
+.Equipa{
+    background-color: $CinzentoMaisClaro;
+    font-family: $font-family;
+}
+
+.FotoPerfil{
+    width: 200px;
+    height: 100px;
+}
+
+.Login{
+    font-family: $font-family;
+}
+
+.logo_Login{
+    width: 400px;
+    height: 200px;
+}

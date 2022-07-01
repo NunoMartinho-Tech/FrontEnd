@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Route, Navigate} from 'react-router-dom'
 
-function ProtectedRoute({isAuth: isAuth, component: Component, ...rest}){
+function ProtectedRoute({ isAuth, Component, ...rest}){
     return <Route {...rest} render={(props) => {
         if (isAuth){
             return <Component/>
