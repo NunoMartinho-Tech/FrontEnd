@@ -39,9 +39,9 @@ function App() {
 
           <Route exact path="/" element={user ? <Navigate to="/home/dasboard"/> : <LandingPage/>}/>
 
-          <Route path="/login" element={<Login isAuth={isAuth}/>}/>
+          <Route path="/login" element={<Login SetUser={SetUser} />}/>
 
-          {/* <Route path="/home" element={<ProtectedRoute path="/home" component={()=>{<UserHome user={user} setUser={SetUser}/>}} isAuth={isAuth}/>}/> */}
+          <Route path="/home" element={<ProtectedRoute path="/home" component={()=>{<UserHome user={user} setUser={SetUser}/>}} isAuth={isAuth}/>}/>
 
         </Routes>
       </div>
