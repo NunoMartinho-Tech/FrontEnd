@@ -7,21 +7,23 @@ import logo from '../../images/Logo_Softinsa.png';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image'
 import '../../scss/LoginPage.scss';
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-function Login({SetUser: SetUser, ...rest}) {
+function Login() {
 
   const[loggedIn,SetloggedIn] = useState(false);
   const[email,SetEmail] = useState("");
   const[passe,SetPasse] = useState("");
 
+  const Navigate = useNavigate();
+
   useEffect(()=>{
     if(loggedIn)
-      <Navigate to="/home/dasboard"/>
-  },[])
+      Navigate('/dashboard')
+  },[loggedIn])
 
       return(
           <Container fluid className='Login'>
@@ -81,7 +83,7 @@ function Login({SetUser: SetUser, ...rest}) {
               localStorage.setItem('token', response.data.token);
               localStorage.setItem('id',response.data.user.id);
               SetloggedIn(true);
-              SetUser(response.data.user);
+              Navigate('/dashboard');
             }else{
               Swal.fire(
                     'Oops..Não foi possível fazer o log in!',

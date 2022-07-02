@@ -20,7 +20,7 @@ function Equipa() {
                     <hr className='border-primary border-2' />
                 </Col>
             </Row>
-            <Row>
+            <Row className='pb-5'>
                 <Col className='d-flex justify-content-start mt-4'>
                 <Card style={{ width: '15rem' }}>
                         <Card.Body>
@@ -74,7 +74,7 @@ function Equipa() {
                         </Card.Body>
                     </Card>
                 </Col>
-            </Row>
+            </Row >
         </Container>
     </section>
     )

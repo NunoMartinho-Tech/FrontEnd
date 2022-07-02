@@ -1,0 +1,21 @@
+@import './variaveis.scss';
+
+.MenuTop{
+    background-color: $AzulEscuro;
+}
+
+.logo{
+    width: 35%;
+}
+
+.UtilizadorFoto{
+    width: 5%;
+    height: 38%;
+    border-radius: 50%;
+    margin-right: 2%;
+}
+
+.link{
+    text-decoration: none;
+    margin-right: 4%;
+}
