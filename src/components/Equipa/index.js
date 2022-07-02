@@ -5,6 +5,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card';
 import Eduardo from '../../images/Eduardo.png';
+import Carlos from '../../images/Carlos.png';
+import Joao from '../../images/Joao.png';
 
 import '../../scss/LandingPage.scss';
 
@@ -19,12 +21,55 @@ function Equipa() {
                 </Col>
             </Row>
             <Row>
-                <Col>
-                    <Card>
-                        {/* <Card.Image variant="top" src={Eduardo} /> */}
+                <Col className='d-flex justify-content-start mt-4'>
+                <Card style={{ width: '15rem' }}>
                         <Card.Body>
-                            <Card.Text>
-                                Nuno Martinho
+                        <Card.Title className= "text-center">Nuno Martinho</Card.Title>
+                        <Card.Text class= "text-center">
+                                Software Developer
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col className='d-flex justify-content-center mt-4'>
+                    <Card   style={{ width: '13rem' }}>
+                        <Card.Img  variant="top" src={Carlos} />
+                        <Card.Body>
+                        <Card.Title className= "text-center">Carlos Machado</Card.Title>
+                            <Card.Text class= "text-center">
+                                Software Developer
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col className='d-flex justify-content-center mt-4'>
+                <Card  style={{ width: '13rem' }}>
+                        <Card.Img variant="top" src={Eduardo} />
+                        <Card.Body >
+                        <Card.Title className= "text-center">Eduardo</Card.Title>
+                        <Card.Text class= "text-center">
+                                Software Developer
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col className='d-flex justify-content-center mt-4'>
+                <Card  style={{ width: '12rem'}}>
+                        <Card.Img variant="top" src={Joao}/>
+                        <Card.Body>
+                        <Card.Title className= "text-center">João Lopes</Card.Title>
+                        <Card.Text class= "text-center">
+                                Software Developer
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col className='d-flex justify-content-start mt-4'>
+                <Card  style={{ width: '13rem' }}> 
+                        <Card.Body>
+                        <Card.Title className= "text-center">Francisco</Card.Title>
+                        <Card.Text class= "text-center">
+                                Software Developer
                             </Card.Text>
                         </Card.Body>
                     </Card>

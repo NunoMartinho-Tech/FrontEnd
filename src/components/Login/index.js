@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -12,17 +12,17 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const baseUrl = "https://softinsa.herokuapp.com";
-
-function Login(SetUser, ...rest) {
+function Login({SetUser: SetUser, ...rest}) {
 
   const[loggedIn,SetloggedIn] = useState(false);
   const[email,SetEmail] = useState("");
-  const[passe,SetPasse] = useState("")
+  const[passe,SetPasse] = useState("");
 
-    if(loggedIn){
+  useEffect(()=>{
+    if(loggedIn)
       <Navigate to="/home/dasboard"/>
-    }else{
+  },[])
+
       return(
           <Container fluid className='Login'>
             <Row >
@@ -61,7 +61,6 @@ function Login(SetUser, ...rest) {
               </Col>
             </Row>
           </Container>)
-    }
 
     function onLogin(){
       if (email==="") {
@@ -74,22 +73,15 @@ function Login(SetUser, ...rest) {
         const data={
           email: email,
           password: passe
-        }
-        const url = baseUrl + "utilizadores/login"
-        axios.post(url,data)
+        } 
+
+        axios.post("/auth/loginGestor",data)
         .then(response=>{
-            if(response.data.sucesso){
+            if(response.data.sucesso===true){
               localStorage.setItem('token', response.data.token);
-              localStorage.setItem('id',response.data.id);
-              localStorage.setItem('centro', response.data.centro);
-              SetloggedIn(true)
-              SetUser(response.data.data)
-              Swal.fire(
-                  'Sucesso!',
-                  'Log in feito com sucesso',
-                  'success'
-              );
-              <Navigate to="/home/dasboard" />
+              localStorage.setItem('id',response.data.user.id);
+              SetloggedIn(true);
+              SetUser(response.data.user);
             }else{
               Swal.fire(
                     'Oops..Não foi possível fazer o log in!',
@@ -99,7 +91,7 @@ function Login(SetUser, ...rest) {
             }
         })
         .catch(error=>{
-          alert("Erro: "+error)
+          alert("Erro: " + error);
         })
       }    
     }

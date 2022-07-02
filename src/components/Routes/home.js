@@ -1,8 +1,10 @@
 import React from 'react'
 
-function UserHomePage() {
+function UserHomePage({user, setUser,  ...rest}) {
   return (
-    <div>UserHomePage</div>
+    <>
+      Estas dentro do site teoricamente
+    </>
   )
 }
 
