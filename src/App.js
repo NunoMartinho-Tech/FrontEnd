@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoutes';
 import PublicRoutes from './components/PublicRoutes';
+import LogOut from './components/Leave';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           {/*Rotas Privadas*/}
           <Route path='/' element={<ProtectedRoute/>}>
               <Route path='dashboard' element={<Dashboard/>}/>
+              <Route path='leave' element={<LogOut/>} />
           </Route>
         </Routes>
     </Router>

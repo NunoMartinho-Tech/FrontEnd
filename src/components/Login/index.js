@@ -80,8 +80,11 @@ function Login() {
         axios.post("/auth/loginGestor",data)
         .then(response=>{
             if(response.data.sucesso===true){
-              localStorage.setItem('token', response.data.token);
-              localStorage.setItem('id',response.data.user.id);
+              if(response.data.token){
+                localStorage.setItem('user', JSON.stringify(response.data.user))
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('id',response.data.user.id);
+              }
               SetloggedIn(true);
               Navigate('/dashboard');
             }else{

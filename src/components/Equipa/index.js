@@ -7,6 +7,8 @@ import Card from 'react-bootstrap/Card';
 import Eduardo from '../../images/Eduardo.png';
 import Carlos from '../../images/Carlos.png';
 import Joao from '../../images/Joao.png';
+import Francisco from '../../images/Francisco.jpeg';
+import Nuno from '../../images/Nuno.png';
 
 import '../../scss/LandingPage.scss';
 
@@ -22,7 +24,8 @@ function Equipa() {
             </Row>
             <Row className='pb-5'>
                 <Col className='d-flex justify-content-start mt-4'>
-                <Card style={{ width: '15rem' }}>
+                <Card style={{ width: '13rem' }}>
+                    <Card.Img  variant="top" src={Nuno} />
                         <Card.Body>
                         <Card.Title className= "text-center">Nuno Martinho</Card.Title>
                         <Card.Text class= "text-center">
@@ -54,7 +57,7 @@ function Equipa() {
                     </Card>
                 </Col>
                 <Col className='d-flex justify-content-center mt-4'>
-                <Card  style={{ width: '12rem'}}>
+                <Card  style={{ width: '13rem'}}>
                         <Card.Img variant="top" src={Joao}/>
                         <Card.Body>
                         <Card.Title className= "text-center">João Lopes</Card.Title>
@@ -66,6 +69,7 @@ function Equipa() {
                 </Col>
                 <Col className='d-flex justify-content-start mt-4'>
                 <Card  style={{ width: '13rem' }}> 
+                        <Card.Img variant="top" src={Francisco}/>
                         <Card.Body>
                         <Card.Title className= "text-center">Francisco</Card.Title>
                         <Card.Text class= "text-center">
