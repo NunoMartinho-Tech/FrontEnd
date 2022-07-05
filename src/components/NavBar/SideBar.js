@@ -15,6 +15,9 @@ import { IoAddCircleOutline, IoSettingsSharp } from "react-icons/io5";
 import SoftinsaLogo from '../../images/Logo_Softinsa_branco.png';
 import axios from 'axios';
 
+{/**
+    Menu com icons e rotas definidas
+*/}
 
 const routes = [
     {
@@ -92,12 +95,18 @@ const routes = [
     },
 ]
 
-const SideBar = ({ children }) => {
+const SideBar = ({ filhos }) => {
+
     const [isOpen, setIsOpen] = useState(false);
     const [foto, setFoto] = useState();
     const [PrimeiroNome, setPNome] = useState("");
     const [UltimoNome, setUNome] = useState("");
     const [Cargo, setCargo] = useState("");
+
+    {/**
+        Obter os dados do utilizador.
+        Nota: Tentar ir buscar ao local storage 
+    */}
 
     useEffect(()=>{
         const id = localStorage.getItem('id')
@@ -118,23 +127,6 @@ const SideBar = ({ children }) => {
 
     const toggle = () => setIsOpen(!isOpen);
 
-    const inputAnimation = {
-        hidden: {
-        width: 0,
-        padding: 0,
-        transition: {
-        duration: 0.2,
-        },
-        },
-        show: {
-            width: "140px",
-            padding: "5px 15px",
-            transition: {
-                duration: 0.2,
-            },
-        },
-    };
-
     const showAnimation = {
         hidden: {
             width: 0,
@@ -154,95 +146,98 @@ const SideBar = ({ children }) => {
 
     return (
     <>
+        <div className="main-container">
             <motion.div
-            animate={{
-                width: isOpen ? "200px" : "45px",
+                animate={{
+                    width: isOpen ? "200px" : "45px",
+                    transition: {
+                        duration: 0.5,
+                        type: "spring",
+                        damping: 10,
+                    },
+                }} className={'sidebar'}>
 
-                transition: {
-                duration: 0.5,
-                type: "spring",
-                damping: 10,
-                },
-            }}
-            className={`sidebar `}
-            >
-            <div className="top_section pb-3">
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.h1
-                    variants={showAnimation}
-                    initial="hidden"
-                    animate="show"
-                    exit="hidden"
-                    className="logo"
-                    >
-                    <img src={SoftinsaLogo} alt="logo" className="logoSoftinsa" />
-                    </motion.h1>
-                )}
-            </AnimatePresence>
+                {/**Logo da softinsa */}
 
-            <div className="bars">
-                <FaBars onClick={toggle} />
-            </div>
-            </div>
-            <div className="search">
-                <div className="frame_imagem_perfil">
-                    <img src={foto} alt="" className="Imagemperfil"/>
-                </div>
-                <AnimatePresence>
-                {isOpen && (
-                    <motion.h6
-                    variants={showAnimation}
-                    initial="hidden"
-                    animate="show"
-                    exit="hidden"
-                    >    
-                    <p className="NomePerfil">{PrimeiroNome + " " + UltimoNome}</p>
-                    <p className="Cargo">{Cargo}</p>
-                    </motion.h6>
-                )}
-                </AnimatePresence>
-            </div>
-            <section className="routes">
-                {routes.map((route, index) => {
-                if (route.subRoutes) {
-                    return (
-                    <SidebarMenu
-                        setIsOpen={setIsOpen}
-                        route={route}
-                        showAnimation={showAnimation}
-                        isOpen={isOpen}
-                    />
-                    );
-                }
-
-                return (
-                    <NavLink
-                    to={route.path}
-                    key={index}
-                    className="link"
-                    activeClassName="active"
-                    >
-                    <div className="icon">{route.icon}</div>
+                <div className="top_section pb-3">
                     <AnimatePresence>
                         {isOpen && (
-                        <motion.div
-                            variants={showAnimation}
-                            initial="hidden"
-                            animate="show"
-                            exit="hidden"
-                            className="link_text"
-                        >
-                            {route.name}
-                        </motion.div>
+                            <motion.h1
+                                variants={showAnimation}
+                                initial="hidden"
+                                animate="show"
+                                exit="hidden"
+                                className="logo">
+                                <img src={SoftinsaLogo} alt="logo" className="logoSoftinsa" />
+                            </motion.h1>
                         )}
                     </AnimatePresence>
-                    </NavLink>
-                );
-                })}
-            </section>
+
+                {/**Icon do menu*/}
+
+                <div className="bars">
+                        <FaBars onClick={toggle} />
+                </div>
+                
+                {/**Imagem de perfil, nome e cargo */}
+
+                </div>
+                    <div className="search">
+                        <div className="frame_imagem_perfil">
+                            <img src={foto} alt="" className="Imagemperfil"/>
+                        </div>
+                    <AnimatePresence>
+                        {isOpen && (
+                            <motion.h6
+                                variants={showAnimation}
+                                initial="hidden"
+                                animate="show"
+                                exit="hidden">    
+                                <p className="NomePerfil">{PrimeiroNome + " " + UltimoNome}</p>
+                                <p className="Cargo">{Cargo}</p>
+                            </motion.h6>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+                <section className="routes">
+                    {routes.map((route, index) => {
+                        if (route.subRoutes) {
+                            return (
+                            <SidebarMenu
+                                setIsOpen={setIsOpen}
+                                route={route}
+                                showAnimation={showAnimation}
+                                isOpen={isOpen}/>
+                            );
+                        }
+                        return (
+                            <NavLink
+                                to={route.path}
+                                key={index}
+                                className="link"
+                                activeClassName="active">
+                                <div className="icon">{route.icon}</div>
+                                <AnimatePresence>
+                                    {isOpen && (
+                                        <motion.div
+                                            variants={showAnimation}
+                                            initial="hidden"
+                                            animate="show"
+                                            exit="hidden"
+                                            className="link_text">
+                                            {route.name}
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </NavLink>
+                        );
+                    })}
+                </section>
             </motion.div>
-            <main>{children}</main>
+            
+            <main>{filhos}</main>
+        </div>
     </>
     );
 };

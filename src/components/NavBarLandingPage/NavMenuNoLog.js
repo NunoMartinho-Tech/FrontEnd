@@ -5,6 +5,7 @@ import logo from '../../images/Logo_Softinsa.png';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image'
+import {motion} from 'framer-motion'
 
 import '../../scss/LandingPage.scss'
 import { Link } from "react-router-dom";
