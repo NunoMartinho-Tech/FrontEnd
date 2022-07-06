@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../scss/Nav.scss';
 import SidebarMenu from "./SideBarMenu";
+import Container from 'react-bootstrap/Container';
 import { FaBars, FaClipboardList, FaRegEdit}  from 'react-icons/fa';
 import {AiFillDashboard} from 'react-icons/ai';
 import {BsFillHouseDoorFill}  from 'react-icons/bs';
@@ -14,6 +15,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { IoAddCircleOutline, IoSettingsSharp } from "react-icons/io5";
 import SoftinsaLogo from '../../images/Logo_Softinsa_branco.png';
 import axios from 'axios';
+import { IconContext } from "react-icons";
 
 {/**
     Menu com icons e rotas definidas
@@ -21,75 +23,75 @@ import axios from 'axios';
 
 const routes = [
     {
-        path: "dashboard",
+        path: "/home/dashboard",
         name: "Dasboard",
         icon: <AiFillDashboard/>
     },
     {
-        path: "centros",
+        path: "/home/centros",
         name: "Centros",
         icon: <HiLocationMarker/>,
         subRoutes: [
             {
-                path: "centros/list",
+                path: "/home/centros/list",
                 name: "Listar Centros",
                 icon: <FaClipboardList/>
             },
             {
-                path: "centros/add",
+                path: "/home/centros/add",
                 name: "Adicionar Centro",
                 icon: <IoAddCircleOutline/>
             },
         ],
     },
     {
-        path: "salas",
+        path: "/home/salas",
         name: "Salas",
         icon: <BsFillHouseDoorFill/>,
         subRoutes: [
             {
-                path: "salas/list",
+                path: "/home/salas/list",
                 name: "Listar Salas",
                 icon: <FaClipboardList/>
             },
             {
-                path: "salas/add",
+                path: "/home/salas/add",
                 name: "Adicionar Sala",
                 icon: <IoAddCircleOutline/>
             },
         ],
     },
     {
-        path: "utilizadores",
+        path: "/home/utilizadores",
         name: "Utilizadores",
         icon: <FiUsers/>,
         subRoutes: [
             {
-                path: "utilizadores/list",
+                path: "/home/utilizadores/list",
                 name: "Listar Utilizadores",
                 icon: <FaClipboardList/>
             },
             {
-                path: "utilizadores/add",
+                path: "/home/utilizadores/add",
                 name: "Adicionar Utilizador",
                 icon: <IoAddCircleOutline/>
             },
         ],
     },
     {
-        path: "defenicoes",
+        path: "/home/defenicoes",
         name: "Defenições",
         icon: <IoSettingsSharp/>,
         subRoutes: [
             {
-                path: "utilizadores/get",
+                path: "/home/utilizadores/get",
                 name: "Perfil",
                 icon: <CgProfile/>
             },
         ],
     },
     {
-        path: "leave",
+        path: "/home/leave",
         name: "Log Out",
         icon: <BiLogOut/>
     },
@@ -149,7 +151,7 @@ const SideBar = ({ children }) => {
         <div className="main-container">
             <motion.div
                 animate={{
-                    width: isOpen ? "200px" : "45px",
+                    width: isOpen ? "220px" : "50px",
                     transition: {
                         duration: 0.5,
                         type: "spring",
@@ -159,7 +161,7 @@ const SideBar = ({ children }) => {
 
                 {/**Logo da softinsa */}
 
-                <div className="top_section pb-3">
+                <div className="top_section pb-3 px-2">
                     <AnimatePresence>
                         {isOpen && (
                             <motion.h1
@@ -174,10 +176,11 @@ const SideBar = ({ children }) => {
                     </AnimatePresence>
 
                 {/**Icon do menu*/}
-
-                <div className="bars">
-                        <FaBars onClick={toggle} />
-                </div>
+                <IconContext.Provider value={{ color: "white", size:'25px'}}>            
+                    <div className="bars mx-1"  >
+                        <FaBars onClick={toggle}/>
+                    </div>
+                </IconContext.Provider>
                 
                 {/**Imagem de perfil, nome e cargo */}
 
@@ -217,7 +220,9 @@ const SideBar = ({ children }) => {
                                 key={index}
                                 className="link"
                                 activeClassName="active">
-                                <div className="icon">{route.icon}</div>
+                                <IconContext.Provider value={{ color: "white", size:'25px'}}>
+                                    <div className="icon">{route.icon}</div>
+                                </IconContext.Provider>
                                 <AnimatePresence>
                                     {isOpen && (
                                         <motion.div
@@ -236,7 +241,7 @@ const SideBar = ({ children }) => {
                 </section>
             </motion.div>
             
-            <main>{children}</main>
+            <Container fluid>{children}</Container>
         </div>
     </>
     );

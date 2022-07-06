@@ -4,6 +4,7 @@ import '../../scss/Nav.scss';
 import { AnimatePresence, motion } from "framer-motion";
 import { FaAngleDown } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { IconContext } from "react-icons";
 
 const menuAnimation = {
   hidden: {
@@ -57,7 +58,9 @@ function NavBar({ route, showAnimation, isOpen, setIsOpen }) {
       <>
       <div className="menu" onClick={toggleMenu}>
         <div className="menu_item">
-          <div className="icon">{route.icon}</div>
+          <IconContext.Provider value={{ color: "white", size:'25px'}}>
+            <div className="icon">{route.icon}</div>
+          </IconContext.Provider>
           <AnimatePresence>
             {isOpen && (
               <motion.div
@@ -98,8 +101,14 @@ function NavBar({ route, showAnimation, isOpen, setIsOpen }) {
             {route.subRoutes.map((subRoute, i) => (
               <motion.div variants={menuItemAnimation} key={i} custom={i}>
                 <NavLink to={subRoute.path} className="link">
-                  <div className="icon">{subRoute.icon}</div>
-                  <motion.div className="link_text">{subRoute.name}</motion.div>
+                  <IconContext.Provider value={{ color: "white", size:'24px'}}>
+                    <div className="icon">
+                      {subRoute.icon}
+                    </div>
+                  </IconContext.Provider>
+                  <motion.div className="link_text">
+                    {subRoute.name}
+                  </motion.div>
                 </NavLink>
               </motion.div>
             ))}

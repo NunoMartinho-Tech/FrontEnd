@@ -7,7 +7,6 @@ import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image'
 import imagem from '../../images/undraw_Real_time_sync_re_nky7.png'
 import '../../scss/LandingPage.scss'
-import { Link } from "react-router-dom";
 
 function Hero() {
     return (
