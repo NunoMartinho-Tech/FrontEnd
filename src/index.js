@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import axios from 'axios';
 
-//"https://softinsa.herokuapp.com/"
-axios.defaults.baseURL = 'http://localhost:4000/'
+//"https://softinsa.herokuapp.com/ http://localhost:4000/"
+axios.defaults.baseURL = 'https://softinsa.herokuapp.com/'
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
 
 

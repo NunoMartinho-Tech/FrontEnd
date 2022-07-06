@@ -22,7 +22,7 @@ function Login() {
 
   useEffect(()=>{
     if(loggedIn)
-      Navigate('/dashboard')
+      Navigate('/home/dashboard')
   },[loggedIn])
 
       return(
@@ -77,7 +77,7 @@ function Login() {
           password: passe
         } 
 
-        axios.post("/auth/loginGestor",data)
+        axios.post("auth/loginGestor",data)
         .then(response=>{
             if(response.data.sucesso===true){
               if(response.data.token){
@@ -86,7 +86,7 @@ function Login() {
                 localStorage.setItem('id',response.data.user.id);
               }
               SetloggedIn(true);
-              Navigate('/dashboard');
+              Navigate('/home/dashboard');
             }else{
               Swal.fire(
                     'Oops..Não foi possível fazer o log in!',

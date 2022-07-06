@@ -49,7 +49,7 @@ function Equipa() {
                 <Card  style={{ width: '13rem' }}>
                         <Card.Img variant="top" src={Eduardo} />
                         <Card.Body >
-                        <Card.Title className= "text-center">Eduardo</Card.Title>
+                        <Card.Title className= "text-center">Eduardo Silva</Card.Title>
                         <Card.Text class= "text-center">
                                 Software Developer
                             </Card.Text>
@@ -71,7 +71,7 @@ function Equipa() {
                 <Card  style={{ width: '13rem' }}> 
                         <Card.Img variant="top" src={Francisco}/>
                         <Card.Body>
-                        <Card.Title className= "text-center">Francisco</Card.Title>
+                        <Card.Title className= "text-center">Francisco Lopes</Card.Title>
                         <Card.Text class= "text-center">
                                 Software Developer
                             </Card.Text>

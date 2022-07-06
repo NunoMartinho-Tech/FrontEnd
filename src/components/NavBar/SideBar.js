@@ -10,7 +10,7 @@ import {HiLocationMarker}  from 'react-icons/hi';
 import {FiUsers}  from 'react-icons/fi';
 import {CgProfile}  from 'react-icons/cg';
 import {BiLogOut}  from 'react-icons/bi';
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { IoAddCircleOutline, IoSettingsSharp } from "react-icons/io5";
 import SoftinsaLogo from '../../images/Logo_Softinsa_branco.png';
 import axios from 'axios';
@@ -21,81 +21,81 @@ import axios from 'axios';
 
 const routes = [
     {
-        path: "/dashboard",
+        path: "dashboard",
         name: "Dasboard",
         icon: <AiFillDashboard/>
     },
     {
-        path: "/centros",
+        path: "centros",
         name: "Centros",
         icon: <HiLocationMarker/>,
         subRoutes: [
             {
-                path: "/centros/list",
+                path: "centros/list",
                 name: "Listar Centros",
                 icon: <FaClipboardList/>
             },
             {
-                path: "/centros/add",
+                path: "centros/add",
                 name: "Adicionar Centro",
                 icon: <IoAddCircleOutline/>
             },
         ],
     },
     {
-        path: "/salas",
+        path: "salas",
         name: "Salas",
         icon: <BsFillHouseDoorFill/>,
         subRoutes: [
             {
-                path: "/salas/list",
+                path: "salas/list",
                 name: "Listar Salas",
                 icon: <FaClipboardList/>
             },
             {
-                path: "/salas/add",
+                path: "salas/add",
                 name: "Adicionar Sala",
                 icon: <IoAddCircleOutline/>
             },
         ],
     },
     {
-        path: "/utilizadores",
+        path: "utilizadores",
         name: "Utilizadores",
         icon: <FiUsers/>,
         subRoutes: [
             {
-                path: "/utilizadores/list",
+                path: "utilizadores/list",
                 name: "Listar Utilizadores",
                 icon: <FaClipboardList/>
             },
             {
-                path: "/utilizadores/add",
+                path: "utilizadores/add",
                 name: "Adicionar Utilizador",
                 icon: <IoAddCircleOutline/>
             },
         ],
     },
     {
-        path: "/defenicoes",
+        path: "defenicoes",
         name: "Defenições",
         icon: <IoSettingsSharp/>,
         subRoutes: [
             {
-                path: "/utilizadores/get",
+                path: "utilizadores/get",
                 name: "Perfil",
                 icon: <CgProfile/>
             },
         ],
     },
     {
-        path: "/leave",
+        path: "leave",
         name: "Log Out",
         icon: <BiLogOut/>
     },
 ]
 
-const SideBar = ({ filhos }) => {
+const SideBar = ({ children }) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [foto, setFoto] = useState();
@@ -236,7 +236,7 @@ const SideBar = ({ filhos }) => {
                 </section>
             </motion.div>
             
-            <main>{filhos}</main>
+            <main>{children}</main>
         </div>
     </>
     );

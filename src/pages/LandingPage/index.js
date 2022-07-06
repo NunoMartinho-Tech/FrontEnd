@@ -4,13 +4,13 @@ import Hero from '../../components/Hero/index';
 import Equipa from '../../components/Equipa/index';
 
 function LandingPage() {
+
   return (
     <div>
       <NavBar/>
       <Hero/>
       <Equipa/>
-    </div>
-  )
+    </div>)
 }
 
 export default LandingPage
