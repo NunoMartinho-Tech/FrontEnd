@@ -11,12 +11,16 @@ import Table from 'react-bootstrap/Table';
 import {HiLocationMarker}  from 'react-icons/hi';
 import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 function ListarCentros() {
 
   const [dataCentro, setdataCentro] = useState([]);
-  /* const utilizador = localStorage.getItem("user");
-  const cargo = utilizador. */
+  const [classe,setClasse] = useState("");
+  const utilizador = localStorage.getItem('user');
+  const tipoGestor = utilizador.TiposGestorId; 
+
+  const Navigate = useNavigate();
 
   useEffect(()=>{
     axios.get('centros/list')
@@ -28,6 +32,14 @@ function ListarCentros() {
       }
     })
   },[])
+
+  useEffect(()=>{
+    if(tipoGestor===1){
+      setClasse("botao_adicionar pt-1 h-75 w-25 mt-2 invisible")
+    }else{
+      setClasse("botao_adicionar pt-1 h-75 w-25 mt-2")
+    }
+  },[tipoGestor])
 
   useEffect(() => {
         LoadData();
@@ -46,9 +58,9 @@ function ListarCentros() {
         <Col className='px-0 d-flex justify-content-start'>
           <h1 className='Titulo_Pagina pt-2'>Lista de Centros</h1>
         </Col>
-        <Col className='mx-3 d-flex justify-content-end' >
-          <Button className='botao_adicionar pt-1 h-75 w-25 mt-2'>
-            Adicionar Centro
+        <Col className='mx-3 d-flex justify-content-end'>
+          <Button className={classe} onClick={()=>Navigate('/home/centros/add')}>
+          Adicionar Centro
           </Button>
         </Col>
       </Row>
@@ -62,7 +74,7 @@ function ListarCentros() {
                     <th scope="col">Horário</th>
                     <th scope="col">Telefone</th>
                     <th scope="col">Estado</th>
-                    <th colSpan={5}>Action</th>
+                    <th colSpan={5}>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -90,13 +102,13 @@ function ListarCentros() {
     } 
 
     function SendAtivarDesativar(id, estado){
-        if(estado = 1){ 
+        if(estado === 1){ 
           axios.put('centros/desativar/' + id)
           .then(res => {
             if(res.data.sucesso){
               Swal.fire(
-                    'Inativado!',
-                    'O Centro foi inativado',
+                    'Sucesso!',
+                    'O centro foi desativado',
                     'success'
                 )
                 LoadData()
@@ -110,8 +122,8 @@ function ListarCentros() {
           .then(res => {
             if(res.data.sucesso){
               Swal.fire(
-                    'Inativado!',
-                    'O Centro foi ativado',
+                    'Sucesso!',
+                    'O centro foi ativado',
                     'success'
                 )
                 LoadData()
@@ -124,9 +136,9 @@ function ListarCentros() {
     }
 
     function onAtivarDesativar(id, estado){
-      if(estado==1){
+      if(estado===1){
         Swal.fire({
-            title: 'Deseja desativar este Centro?',
+            title: 'Deseja desativar este centro?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Concluir',
@@ -141,7 +153,7 @@ function ListarCentros() {
         })
       }else{
         Swal.fire({
-            title: 'Deseja ativar este Centro?',
+            title: 'Deseja ativar este centro?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Concluir',
@@ -164,7 +176,7 @@ function ListarCentros() {
             if (response.data.sucesso) {
                 Swal.fire(
                     'Eliminado!',
-                    'O Centro foi eliminado',
+                    'O centro foi eliminado',
                     'success'
                 )
                 LoadData()
@@ -178,7 +190,7 @@ function ListarCentros() {
 
     function OnDelete(id){
         Swal.fire({
-            title: 'Deseja eliminar este Centro?',
+            title: 'Deseja eliminar este centro?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Concluir',
@@ -210,9 +222,6 @@ function ListarCentros() {
                     <td>{data.Hora_abertura + '-' + data.Hora_fecho}</td>
                     <td>{data.Telefone}</td>
                     <td>{data.Estado.descricao}</td>
-                    <td>
-                        <Link className="btn btn-success botaoAcao" to={"/home/centros/get/" + data.id}>Visualizar</Link>
-                    </td>
                     <td>
                         <Link className="btn btn-warning botaoAcao" to={"/home/centros/edit/" + data.id}>Editar</Link>
                     </td>

@@ -10,7 +10,6 @@ import Dashboard from './pages/Dashboard';
 import ListarCentros from './pages/Centros/ListarCentros';
 import AdicionarCentros from './pages/Centros/AddCentro';
 import EditarCentros from './pages/Centros/EditCentro';
-import PerfilCentro from './pages/Centros/PerfilCentro';
 
 import ListarSalas from './pages/Salas/ListarSalas';
 import AdicionarSalas from './pages/Salas/AddSala';
@@ -46,7 +45,6 @@ function App() {
               <Route path='/home/centros/list' element={<ListarCentros/>}/>
               <Route path='/home/centros/add' element={<AdicionarCentros/>}/>
               <Route path='/home/centros/edit/:id' element={<EditarCentros/>}/>
-              <Route path='/home/centros/get/:id' element={<PerfilCentro/>}/>
               {/**Salas */}
               <Route path='/home/salas/list' element={<ListarSalas/>}/>
               <Route path='/home/salas/add' element={<AdicionarSalas/>}/>
