@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../scss/adicionar.scss'
 import Container from 'react-bootstrap/Container'
@@ -8,10 +8,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import {FiEdit}  from 'react-icons/fi';
 import { IconContext } from "react-icons";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IoAddCircleOutline } from "react-icons/io5";
+import Menu from '../../components/NavBar/SideBar';
 
 function AddCentro() {
 
@@ -24,21 +24,20 @@ function AddCentro() {
   const Navigate = useNavigate();
 
   return (
+    <Menu>
     <Container fluid>
       <Row className='mt-3'>
-        <Col className='mt-2 d-flex justify-content-center' md={1}>
+        <Col className=' d-flex justify-content-start'>
             <IconContext.Provider value={{ color: "white", size:'30px', style: { verticalAlign: 'middle'}}}>
                 <div className='pt-2 icon_box d-flex justify-content-center'>
                   <IoAddCircleOutline/>
                 </div>
             </IconContext.Provider>
-        </Col>
-        <Col className='px-0 d-flex justify-content-start'>
-          <h1 className='Titulo_Pagina pt-2'>Adicionar Centro </h1>
+            <h1 className='Titulo_Pagina mx-4'>Adicionar Centro </h1>
         </Col>
       </Row>
-      <Row>
-        <Col className=' mt-5 mx-4 d-flex justify-content-start' >
+      <Row className='pb-3'>
+        <Col className=' mt-2 d-flex justify-content-start' >
           <div className='formulario'>
             <p className='formulario-titulo'>Formulário</p>
           <Form>
@@ -67,34 +66,35 @@ function AddCentro() {
             <Form.Group>
               <Form.Label className='formulario-label-input'>Hora Inicio</Form.Label>
               <br/>
-              <Form.Control size="sm" type="text" value={Hora_abertura} onChange={(value) => setHora_abertura(value.target.value)} className='formulario-input'/>
+              <Form.Control size="sm" type="time" value={Hora_abertura} onChange={(value) => setHora_abertura(value.target.value)} className='formulario-input'/>
             </Form.Group>
 
             <Form.Group className='pb-3'>
               <Form.Label className='formulario-label-input'>Hora Fim</Form.Label>
               <br/>
-              <Form.Control size="sm" type="text" value={Hora_fecho} onChange={(value) => setHora_fecho(value.target.value)} className='formulario-input'/>
+              <Form.Control size="sm" type="time" value={Hora_fecho} onChange={(value) => setHora_fecho(value.target.value)} className='formulario-input'/>
             </Form.Group>
           </Form>
           </div>
         </Col>
       </Row>
       <Row>
-        <Col className='my-5 mx-5 d-flex justify-content-end' >
-          <Button className='BotaoCancelar d-flex justify-content-center' onClick={()=>Navigate('/home/centros/list')}>Cancelar</Button>
-          <Button className='BotaoConfirmar d-flex justify-content-center'onClick={()=>OnSave()}>Confirmar</Button>
+        <Col className='my-5 mx-5 d-flex justify-content-end fixed-bottom px-5' >
+          <Button className='BotaoCancelar d-flex justify-content-center' onClick={()=>Navigate(-1)}>Cancelar</Button>
+          <Button className='BotaoConfirmar d-flex justify-content-center'onClick={()=>OnSave()}>Concluir</Button>
         </Col>
       </Row>
     </Container>
+    </Menu>
   )
 
   function OnSave(){
         Swal.fire({
-            title: 'Deseja criar o Centro?',
+            title: 'Deseja criar o centro?',
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Sim',
-            cancelButtonText: 'Não'
+            confirmButtonText: 'Concluir',
+            cancelButtonText: 'Cancelar'
         })
         .then((result) => {
             if (result.value) {
@@ -104,7 +104,7 @@ function AddCentro() {
     }  
 
     function SendSave(){
-        if (Nome===0) {
+        if (Nome==="") {
             Swal.fire('Insira um nome')
         }
         else if (Morada==="") {
@@ -118,7 +118,9 @@ function AddCentro() {
         }
         else if (Telefone==="") {
             Swal.fire('Insira um número de telefone')
-        }
+            
+        }else if( /^\d+$/.test(Telefone) == 0)
+              Swal.fire('O numero de telefone so pode ter digitos')
         else {
             const datapost = {
                 Nome : Nome,
@@ -135,11 +137,12 @@ function AddCentro() {
                         'O centro foi criado',
                         'success'
                 );
+                Navigate('/home/centros/list')
             }
             else {
                 Swal.fire(
                     'Erro',
-                    'Não foi possível inserir o centro',
+                    response.data.message,
                     'error'
                 )
             }

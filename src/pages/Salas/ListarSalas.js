@@ -11,23 +11,38 @@ import Table from 'react-bootstrap/Table';
 import {BsFillHouseDoorFill}  from 'react-icons/bs';
 import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import Menu from '../../components/NavBar/SideBar';
 
 function ListarSalas() {
 
   const [dataSala, setdataSala] = useState([]);
-  
+  const utilizador = localStorage.getItem('user');
+  var user = JSON.parse(utilizador)
+  const tipoGestor = user.TiposGestorId; 
+  const CentroId = user.CentroId
   const Navigate = useNavigate();
 
   useEffect(()=>{
-    axios.get('salas/list')
-    .then(res=>{
-      if(res.data.sucesso){
-        setdataSala(res.data.data)
-      }else{
-        alert("Error Web Service");
-      }
-    })
+    if(tipoGestor===1){
+      axios.get('salas/listSalas/'+CentroId)
+      .then(res=>{
+        if(res.data.sucesso){
+          setdataSala(res.data.data)
+        }else{
+          alert("Error Web Service");
+        }
+      })
+    }else{
+      axios.get('salas/list')
+      .then(res=>{
+        if(res.data.sucesso){
+          setdataSala(res.data.data)
+        }else{
+          alert("Error Web Service");
+        }
+      })
+    }
   },[])
 
   useEffect(() => {
@@ -35,6 +50,7 @@ function ListarSalas() {
   },[]); 
 
   return (
+    <Menu> 
     <Container fluid>
       <Row className='mt-3'>
         <Col className='mt-2 d-flex justify-content-center' md={1}>
@@ -49,7 +65,7 @@ function ListarSalas() {
         </Col>
         <Col className='mx-3 d-flex justify-content-end'>
           <Button className="botao_adicionar pt-1 h-75 w-25 mt-2" onClick={()=>Navigate('/home/salas/add')}>
-            Adicionar Sala
+            <b>Adicionar Sala</b>
           </Button>
         </Col>
       </Row>
@@ -75,6 +91,7 @@ function ListarSalas() {
         </Col>
       </Row>
     </Container>
+    </Menu>
   )
 
     function LoadData() {
@@ -118,8 +135,6 @@ function ListarSalas() {
               LoadData()
             }
           })
-        }else{
-          Swal.fire('Insira um motivo')
         }
       }else{
         Swal.fire({
@@ -201,7 +216,7 @@ function ListarSalas() {
             return(
                 <tr key={index}>
                     <td>{data.Nome}</td>
-                    <td>{data.Capacidade +"/"+ data.Alocacao}</td>
+                    <td>{data.Capacidade +"/"+ (data.Capacidade * (data.Alocacao/100))}</td>
                     <td>{data.Tempo_Limpeza}</td>
                     <td>{data.Centro.Nome}</td>
                     <td>{data.Motivo_Bloqueio}</td>

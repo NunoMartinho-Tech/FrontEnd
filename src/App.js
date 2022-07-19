@@ -1,10 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import './scss/app.scss'
 
 import LandingPage from './pages/LandingPage';
 import Login from './pages/Login';
 import LogOut from './pages/Leave';
+import PrimeiroLogin from './pages/PrimeiroLogin'
 import Dashboard from './pages/Dashboard';
 
 import ListarCentros from './pages/Centros/ListarCentros';
@@ -18,16 +19,18 @@ import EditarSalas from './pages/Salas/EditSala';
 import ListarUtilizadores from './pages/Utilizadores/ListUtilizadores';
 import AdicionarUtilizadores from './pages/Utilizadores/AddUtilizador';
 import EditarUtilizadores from './pages/Utilizadores/EditUtilizador';
+import ReservasUtilizador from './pages/Utilizadores/ReservasUtilizador'
 
 import ProtectedRoute from './components/ProtectedRoutes';
 import PublicRoutes from './components/PublicRoutes';
-import SideBar from "./components/NavBar/SideBar";
+
+import PefilUtilizador from './pages/Perfil';
+
 
 function App() {
 
   return (
     <Router>
-      <SideBar>
         <Routes>
           {/* Rotas publicas */}
             <Route path='/' element={<PublicRoutes/>}>
@@ -40,6 +43,7 @@ function App() {
           {/* Rotas Privadas */}
             <Route exact path='/home' element={<ProtectedRoute/>} >
               <Route path='/home/dashboard' element={<Dashboard/>}/>
+              <Route path='/home/primeiroLogin' element={<PrimeiroLogin/>}/>
               <Route path='/home/leave' element={<LogOut/>} />
               {/**Centros */}
               <Route path='/home/centros/list' element={<ListarCentros/>}/>
@@ -53,11 +57,12 @@ function App() {
               <Route path='/home/utilizadores/list' element={<ListarUtilizadores/>}/>
               <Route path='/home/utilizadores/add' element={<AdicionarUtilizadores/>}/>
               <Route path='/home/utilizadores/edit/:id' element={<EditarUtilizadores/>}/>
+              <Route path='/home/utilizadores/reservas/:id' element={<ReservasUtilizador/>}/>
+              <Route path='/home/perfil' element={<PefilUtilizador/>}/>
               {/**Quando não encontrar o caminho */}
               <Route path="*" element={<> not found</>} />
             </Route>
         </Routes>
-      </SideBar>
     </Router>
   );
 }

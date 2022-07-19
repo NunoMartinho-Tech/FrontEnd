@@ -21,8 +21,11 @@ function Login() {
   const Navigate = useNavigate();
 
   useEffect(()=>{
-    if(loggedIn)
+    if(loggedIn){
+      const user = localStorage.getItem('user')
+      console.log(user.id)
       Navigate('/home/dashboard')
+    }
   },[loggedIn])
 
       return(
@@ -86,6 +89,7 @@ function Login() {
                 localStorage.setItem('id',response.data.user.id);
               }
               SetloggedIn(true);
+              console.log(response.data.user.CentroId)
               Navigate('/home/dashboard');
             }else{
               Swal.fire(

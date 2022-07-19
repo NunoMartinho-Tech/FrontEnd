@@ -50,7 +50,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 10px 0px;
+    padding: 15px 0px 0px 10px;
 }
 
 .logo {
@@ -94,12 +94,14 @@ main {
     font-size: smaller;
     margin-bottom: 0px;
     margin-top: 4px;
+    padding-left: 10px;
 }
 
 .Cargo{
     font-size:80%;
     margin-top: 1px;
     margin-bottom: 0px;
+    padding-left: 10px;
 }
 
 .routes {

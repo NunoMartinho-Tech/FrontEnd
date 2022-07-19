@@ -7,7 +7,7 @@ import logo from '../../images/Logo_Softinsa.png';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image'
 import '../../scss/LoginPage.scss';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 function LogOut () {
@@ -18,10 +18,13 @@ function LogOut () {
         <Container fluid className='Login'>
             <Row >
                 <Col className='d-flex justify-content-center col-12'>
-                    <Image src={logo} className="logo_Login"/>
+                    <Link to='/home/dashboard'>
+                        <Image src={logo} className="logo_Login"/>
+                    </Link>
                 </Col>
             </Row>
             <Row>
+                
                 <Col className='d-flex justify-content-center col-12 '>
                     <p className='Login'>Deseja fazer log out?</p>
                 </Col>

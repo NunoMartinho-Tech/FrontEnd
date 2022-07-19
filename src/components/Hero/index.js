@@ -10,27 +10,26 @@ import '../../scss/LandingPage.scss'
 
 function Hero() {
     return (
-        <section className='hero'>
-            <Container>
-                <Row className='d-flex align-items-center'>
-                    <Col className='justify-content-start'>
-                        <p className='h1 mb-3'>Reserve e organize os espaços da sua empresa sem dificuldades</p>
-                        <small className='text-muted'> 
+    <section className='hero'>
+            <Row className='align-items-center mt-5'>
+                <Col className='justify-content-start' sm={8} md={6}>
+                    <Container className='mx-3'>
+                        <h3 className='mb-3'>Reserve e organize os espaços da sua empresa sem dificuldades</h3>
+                        <small className='text-muted '> 
                             Um software capaz de gerir os espaços,
                             as pessoas e as reservas em tempo real e com a maior facilidade.
                         </small>
                         <br />
-                        {/*Fazer link para a app*/}
-                        <Button variant="primary" size="lg" className='px-5 py-1 mt-3'>
-                        Fazer download da app
-                        </Button>
-                    </Col>
-                    <Col>
-                        <Image src={imagem} className='heroImagem'></Image>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
+                    </Container>
+                    <Container className='d-flex justify-content-start mx-3'>
+                        <Button variant="primary" size="lg" className=' my-3'>Fazer download da app</Button>
+                    </Container>
+                </Col>
+                <Col className="d-flex justify-content-center d-none d-sm-block" sm={4} md={6}>
+                    <Image src={imagem} className='heroImagem mx-2'></Image>
+                </Col>
+            </Row>
+    </section>
     )
 }
 

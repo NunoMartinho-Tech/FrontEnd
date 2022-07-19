@@ -29,4 +29,21 @@
 .botaoAcao{
     width: 90px;
     height: 35px;
+    color: $Branco;
+}
+
+.imagem{
+    width:60px;
+    height: 60px;
+}
+
+.BotaoVoltar {
+    box-shadow: rgba(0, 0, 0, 0.24) 7px 8px 10px;
+    border: 5px black;
+    border-radius: 10px;
+    width: 150px;
+    height: 35px;
+    background-color: $CinzentoEscuro;
+    margin-left: 2%;
+    margin-right: 40px;
 }

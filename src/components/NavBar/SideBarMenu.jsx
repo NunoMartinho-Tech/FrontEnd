@@ -88,33 +88,7 @@ function NavBar({ route, showAnimation, isOpen, setIsOpen }) {
             <FaAngleDown />
           </motion.div>
         )}
-      </div>{" "}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            variants={menuAnimation}
-            initial="hidden"
-            animate="show"
-            exit="hidden"
-            className="menu_container"
-          >
-            {route.subRoutes.map((subRoute, i) => (
-              <motion.div variants={menuItemAnimation} key={i} custom={i}>
-                <NavLink to={subRoute.path} className="link">
-                  <IconContext.Provider value={{ color: "white", size:'24px'}}>
-                    <div className="icon">
-                      {subRoute.icon}
-                    </div>
-                  </IconContext.Provider>
-                  <motion.div className="link_text">
-                    {subRoute.name}
-                  </motion.div>
-                </NavLink>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}{" "}
-      </AnimatePresence>
+      </div>
     </>
     )
 

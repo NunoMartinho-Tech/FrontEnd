@@ -11,6 +11,7 @@ import Form from 'react-bootstrap/Form'
 import {FiEdit}  from 'react-icons/fi';
 import { IconContext } from "react-icons";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import Menu from '../../components/NavBar/SideBar';
 
 
 function EditCentro() {
@@ -29,7 +30,7 @@ function EditCentro() {
     axios.get("centros/get/" + id)
     .then(res=>{
       if(res.data.sucesso){
-        const Data = res.data.data[0];
+        const Data = res.data.data;
         setNome(Data.Nome);
         setMorada(Data.Endereco);
         setHora_abertura(Data.Hora_abertura);
@@ -46,21 +47,20 @@ function EditCentro() {
 
 
   return (
+    <Menu>
     <Container fluid>
       <Row className='mt-3'>
-        <Col className='mt-2 d-flex justify-content-center' md={1}>
+        <Col className='d-flex justify-content-start'>
             <IconContext.Provider value={{ color: "white", size:'30px', style: { verticalAlign: 'middle'}}}>
                 <div className='pt-2 icon_box d-flex justify-content-center'>
                   <FiEdit/>
                 </div>
             </IconContext.Provider>
-        </Col>
-        <Col className='px-0 d-flex justify-content-start'>
-          <h1 className='Titulo_Pagina pt-2'>Editar Centro </h1>
+            <h1 className='Titulo_Pagina mx-4'>Editar Centro </h1>
         </Col>
       </Row>
       <Row>
-        <Col className=' mt-5 mx-4 d-flex justify-content-start' >
+        <Col className=' mt-2 d-flex justify-content-start' >
           <div className='formulario'>
             <p className='formulario-titulo'>Formulário</p>
           <Form>
@@ -89,25 +89,26 @@ function EditCentro() {
             <Form.Group>
               <Form.Label className='formulario-label-input'>Hora Inicio</Form.Label>
               <br/>
-              <Form.Control size="sm" type="text" value={Hora_abertura} onChange={(value) => setHora_abertura(value.target.value)} className='formulario-input'/>
+              <Form.Control size="sm" type="time" value={Hora_abertura} onChange={(value) => setHora_abertura(value.target.value)} className='formulario-input'/>
             </Form.Group>
 
             <Form.Group className='pb-3'>
               <Form.Label className='formulario-label-input'>Hora Fim</Form.Label>
               <br/>
-              <Form.Control size="sm" type="text" value={Hora_fecho} onChange={(value) => setHora_fecho(value.target.value)} className='formulario-input'/>
+              <Form.Control size="sm" type="time" value={Hora_fecho} onChange={(value) => setHora_fecho(value.target.value)} className='formulario-input'/>
             </Form.Group>
           </Form>
           </div>
         </Col>
       </Row>
       <Row>
-        <Col className='my-5 mx-5 d-flex justify-content-end' >
-          <Button className='BotaoCancelar d-flex justify-content-center' onClick={()=>Navigate('/home/centros/list')}>Cancelar</Button>
-          <Button className='BotaoConfirmar d-flex justify-content-center'onClick={()=>OnUpdate()}>Confirmar</Button>
+        <Col className='my-5 mx-5 d-flex justify-content-end fixed-bottom px-5' >
+          <Button className='BotaoCancelar d-flex justify-content-center' onClick={()=>Navigate(-1)}>Cancelar</Button>
+          <Button className='BotaoConfirmar d-flex justify-content-center'onClick={()=>OnUpdate()}>Concluir</Button>
         </Col>
       </Row>
     </Container>
+    </Menu>
   )
 
     function OnUpdate(){
@@ -115,8 +116,8 @@ function EditCentro() {
             title: 'Deseja editar este Centro?',
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Sim',
-            cancelButtonText: 'Não'
+            confirmButtonText: 'Concluir',
+            cancelButtonText: 'Cancelar'
         })
         .then((result) => {
             if (result.value) {
@@ -132,9 +133,17 @@ function EditCentro() {
         else if (Morada==="") {
             Swal.fire('Insira uma morada')
         }
+        else if (Hora_abertura==="") {
+            Swal.fire('Insira uma hora início')
+        }
+        else if (Hora_fecho==="") {
+            Swal.fire('Insira uma hora fim')
+        }
         else  if(Telefone===""){
             Swal.fire('Insira um número de telefone')
         }
+        else if( /^\d+$/.test(Telefone) == 0)
+              Swal.fire('O numero de telefone so pode ter digitos')
         else {
             const datapost = {
                     Nome : Nome,
@@ -143,7 +152,7 @@ function EditCentro() {
                     Hora_abertura: Hora_abertura,
                     Hora_fecho: Hora_fecho
             }
-            axios.put("centros/edit/"+id,datapost)
+            axios.put("centros/update/"+id,datapost)
             .then(response=>{
                 if (response.data.sucesso===true) {
                     Swal.fire(
@@ -151,11 +160,12 @@ function EditCentro() {
                         'O centro foi atualizado',
                         'success'
                     );
+                    Navigate('/home/centros/list');
                 }
                 else {
                     Swal.fire(
                     'Erro!',
-                    'Não foi possível atualizar o centro',
+                    response.data.message,
                     'error'
                 )
                 }

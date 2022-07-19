@@ -14,8 +14,7 @@ import '../../scss/LandingPage.scss';
 
 function Equipa() {
     return (
-    <section id='#Equipa' className='Equipa'>
-        <Container>
+    <>
             <Row>
                 <Col className='d-flex justify-content-center'>
                     <p className='h2 py-4'>Equipa</p>
@@ -23,12 +22,12 @@ function Equipa() {
                 </Col>
             </Row>
             <Row className='pb-5'>
-                <Col className='d-flex justify-content-start mt-4'>
+                <Col className='d-flex justify-content-center mt-4'>
                 <Card style={{ width: '13rem' }}>
                     <Card.Img  variant="top" src={Nuno} />
                         <Card.Body>
                         <Card.Title className= "text-center">Nuno Martinho</Card.Title>
-                        <Card.Text class= "text-center">
+                        <Card.Text className= "text-center">
                                 Software Developer
                             </Card.Text>
                         </Card.Body>
@@ -39,7 +38,7 @@ function Equipa() {
                         <Card.Img  variant="top" src={Carlos} />
                         <Card.Body>
                         <Card.Title className= "text-center">Carlos Machado</Card.Title>
-                            <Card.Text class= "text-center">
+                            <Card.Text className= "text-center">
                                 Software Developer
                             </Card.Text>
                         </Card.Body>
@@ -50,7 +49,7 @@ function Equipa() {
                         <Card.Img variant="top" src={Eduardo} />
                         <Card.Body >
                         <Card.Title className= "text-center">Eduardo Silva</Card.Title>
-                        <Card.Text class= "text-center">
+                        <Card.Text className= "text-center">
                                 Software Developer
                             </Card.Text>
                         </Card.Body>
@@ -61,26 +60,25 @@ function Equipa() {
                         <Card.Img variant="top" src={Joao}/>
                         <Card.Body>
                         <Card.Title className= "text-center">João Lopes</Card.Title>
-                        <Card.Text class= "text-center">
+                        <Card.Text className= "text-center">
                                 Software Developer
                             </Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col className='d-flex justify-content-start mt-4'>
+                <Col className='d-flex justify-content-center mt-4'>
                 <Card  style={{ width: '13rem' }}> 
                         <Card.Img variant="top" src={Francisco}/>
                         <Card.Body>
                         <Card.Title className= "text-center">Francisco Lopes</Card.Title>
-                        <Card.Text class= "text-center">
+                        <Card.Text className= "text-center">
                                 Software Developer
                             </Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
             </Row >
-        </Container>
-    </section>
+    </>
     )
 }
 

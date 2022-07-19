@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../scss/listar.scss';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -12,14 +11,18 @@ import {HiLocationMarker}  from 'react-icons/hi';
 import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
+import Menu from '../../components/NavBar/SideBar';
 
 function ListarCentros() {
 
   const [dataCentro, setdataCentro] = useState([]);
   const [classe,setClasse] = useState("");
   const utilizador = localStorage.getItem('user');
-  const tipoGestor = utilizador.TiposGestorId; 
-
+  var user = JSON.parse(utilizador)
+  const tipoGestor = user.TiposGestorId; 
+  const CentroId = user.CentroId
+  //console.log(CentroId)
+  //console.log(tipoGestor)
   const Navigate = useNavigate();
 
   useEffect(()=>{
@@ -33,34 +36,32 @@ function ListarCentros() {
     })
   },[])
 
-  useEffect(()=>{
-    if(tipoGestor===1){
-      setClasse("botao_adicionar pt-1 h-75 w-25 mt-2 invisible")
-    }else{
-      setClasse("botao_adicionar pt-1 h-75 w-25 mt-2")
-    }
-  },[tipoGestor])
-
   useEffect(() => {
+        if(tipoGestor===1){
+          setClasse("botao_adicionar pt-1 h-75 w-25 mt-2 invisible")
+        }else{
+          setClasse("botao_adicionar pt-1 h-75 w-25 mt-2 mx-3")
+        }
         LoadData();
   },[]); 
 
   return (
-    <Container fluid>
+    <>
+      <Menu>
       <Row className='mt-3'>
-        <Col className='mt-2 d-flex justify-content-center' md={1}>
+        <Col className='mt-2 d-flex justify-content-center' sm={2} md={1}>
             <IconContext.Provider value={{ color: "white", size:'30px', style: { verticalAlign: 'middle'}}}>
                 <div className='pt-2 icon_box d-flex justify-content-center'>
                   <HiLocationMarker/>
                 </div>
             </IconContext.Provider>
         </Col>
-        <Col className='px-0 d-flex justify-content-start'>
+        <Col className='px-0 d-flex justify-content-start' sm={4} md={5}>
           <h1 className='Titulo_Pagina pt-2'>Lista de Centros</h1>
         </Col>
-        <Col className='mx-3 d-flex justify-content-end'>
+        <Col className='d-flex justify-content-end' sm={4} md={6}>
           <Button className={classe} onClick={()=>Navigate('/home/centros/add')}>
-          Adicionar Centro
+          <b>Adicionar Centro</b>
           </Button>
         </Col>
       </Row>
@@ -83,7 +84,8 @@ function ListarCentros() {
         </Table>
         </Col>
       </Row>
-    </Container>
+    </Menu>
+    </>
   )
 
   function LoadData() {
@@ -187,7 +189,6 @@ function ListarCentros() {
         })
     }
 
-
     function OnDelete(id){
         Swal.fire({
             title: 'Deseja eliminar este centro?',
@@ -207,6 +208,9 @@ function ListarCentros() {
 
     function LoadTableData(){
         let botaoEstado = ""
+        let botaoEditar = ""
+        let botaoEliminar = ""
+        let botaoAtivarDesativar = ""
 
         return dataCentro.map((data, index)=>{
 
@@ -214,6 +218,16 @@ function ListarCentros() {
               botaoEstado = "Desativar"
             else
               botaoEstado = "Ativar"
+            
+            if(CentroId === dataCentro[index].id){
+              botaoEditar = "btn btn-warning botaoAcao visible"
+              botaoEliminar = "btn btn-danger botaoAcao visible"
+              botaoAtivarDesativar = "btn btn-primary botaoAcao visible"
+            }else{
+              botaoEditar = "btn btn-warning botaoAcao invisible"
+              botaoEliminar = "btn btn-danger botaoAcao invisible"
+              botaoAtivarDesativar = "btn btn-primary botaoAcao invisible"
+            }
 
             return(
                 <tr key={index}>
@@ -223,13 +237,13 @@ function ListarCentros() {
                     <td>{data.Telefone}</td>
                     <td>{data.Estado.descricao}</td>
                     <td>
-                        <Link className="btn btn-warning botaoAcao" to={"/home/centros/edit/" + data.id}>Editar</Link>
+                        <Link className={botaoEditar} to={"/home/centros/edit/" + data.id}>Editar</Link>
                     </td>
                     <td>
-                        <button className="btn btn-danger botaoAcao" type="button" onClick={()=>OnDelete(data.id)}>Eliminar</button>
+                        <button className={botaoEliminar} type="button" onClick={()=>OnDelete(data.id)}>Eliminar</button>
                     </td>
                     <td>
-                        <button className="btn btn-primary botaoAcao" type="button" onClick={()=>onAtivarDesativar(data.id,data.Estado.id)}>{botaoEstado}</button>
+                        <button className={botaoAtivarDesativar} type="button" onClick={()=>onAtivarDesativar(data.id,data.Estado.id)}>{botaoEstado}</button>
                     </td>
                 </tr>
             )
