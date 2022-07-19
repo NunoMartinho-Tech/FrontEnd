@@ -219,14 +219,20 @@ function ListarCentros() {
             else
               botaoEstado = "Ativar"
             
-            if(CentroId === dataCentro[index].id){
-              botaoEditar = "btn btn-warning botaoAcao visible"
-              botaoEliminar = "btn btn-danger botaoAcao visible"
-              botaoAtivarDesativar = "btn btn-primary botaoAcao visible"
+            if(tipoGestor === 1){
+              if(CentroId === dataCentro[index].id){
+                botaoEditar = "btn btn-warning botaoAcao visible"
+                botaoEliminar = "btn btn-danger botaoAcao visible"
+                botaoAtivarDesativar = "btn btn-primary botaoAcao visible"
+              }else{
+                botaoEditar = "btn btn-warning botaoAcao invisible"
+                botaoEliminar = "btn btn-danger botaoAcao invisible"
+                botaoAtivarDesativar = "btn btn-primary botaoAcao invisible"
+              }
             }else{
-              botaoEditar = "btn btn-warning botaoAcao invisible"
-              botaoEliminar = "btn btn-danger botaoAcao invisible"
-              botaoAtivarDesativar = "btn btn-primary botaoAcao invisible"
+                botaoEditar = "btn btn-warning botaoAcao visible"
+                botaoEliminar = "btn btn-danger botaoAcao visible"
+                botaoAtivarDesativar = "btn btn-primary botaoAcao visible"
             }
 
             return(
