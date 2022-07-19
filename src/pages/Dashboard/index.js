@@ -37,22 +37,22 @@ function Dashboard() {
   {/**Verificar o log in */}
   useEffect(()=>{
         const jsonuser = localStorage.getItem('user');
-        console.log(jsonuser)
+        //console.log(jsonuser)
         user = JSON.parse(jsonuser)
         setPrimeiroLogin(user.PrimeiroLogin)
-        console.log(user.PrimeiroLogin)
+        //console.log(user.PrimeiroLogin)
   },[]);
 
   {/**Obter info do user logado */}
   useEffect(() => {
       const jsonuser = localStorage.getItem('user')
       const userdata = JSON.parse(jsonuser)
-      console.log(userdata)
+      //console.log(userdata)
         setUserData(userdata)
         setTipoGestor(UserData.TiposGestorId)
-        console.log(UserData)
+        //console.log(UserData)
         //console.log(CentroData.id)
-        console.log(UserData.TiposGestorId)
+        //console.log(UserData.TiposGestorId)
 
         if(TiposGestor===1){
           setClasse("py-3 invisible")

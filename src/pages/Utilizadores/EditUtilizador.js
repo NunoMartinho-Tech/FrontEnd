@@ -272,8 +272,8 @@ function EditUtilizador() {
       console.log(UNome)
       console.log(Email)
       console.log(PalavraPasse) */
-      console.log(Cargo)
-      console.log(TipoGestor)
+      //console.log(Cargo)
+      //console.log(TipoGestor)
       /* console.log(CentroId)
       console.log(id) */
         if (PNome==="") {
@@ -306,7 +306,7 @@ function EditUtilizador() {
                   TipoGestor : TipoGestor,
                   Centros: CentroId
                 }  
-                console.log(datapost)
+                //console.log(datapost)
                 axios.put("utilizadores/update/" + id,datapost)
                 .then(response=>{
                 if (response.data.sucesso===true) {

@@ -49,9 +49,9 @@ function ReservasDatas(props) {
             DataInicio: DataIncio,
             DataFim: DataFim
         }
-        console.log(dataget)
+        /* console.log(dataget)
         console.log(dataget.DataInicio)
-        console.log(dataget.DataFim)
+        console.log(dataget.DataFim) */
         axios.put('reservas/entredatas/'+centro,dataget)
         .then(response=>{
           if(response.data.sucesso){

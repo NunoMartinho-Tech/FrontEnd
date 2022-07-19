@@ -11,7 +11,7 @@ function Limpeza(props) {
     const [data, setdata] = useState([])
 
     useEffect(()=>{
-        console.log(props.centroid)
+        //console.log(props.centroid)
         axios.get('centros/salasporlimpar/'+props.centroid)
         .then(res=>{
             console.log(res)

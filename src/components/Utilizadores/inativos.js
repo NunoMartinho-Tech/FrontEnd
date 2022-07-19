@@ -16,7 +16,7 @@ function Inativos(props) {
     axios.get('centros/utilizadoresinativos/'+centro)
     .then(response=>{
       if(response.data.sucesso){
-        console.log(response.data.data)
+        //console.log(response.data.data)
         setdata(response.data.data)
       }
     })

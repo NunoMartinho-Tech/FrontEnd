@@ -12,7 +12,6 @@ import {FiUsers}  from 'react-icons/fi';
 import { IconContext } from "react-icons";
 import { Link, useNavigate} from "react-router-dom";
 import Menu from '../../components/NavBar/SideBar';
-import Image from 'react-bootstrap/Image';
 
 function ListUtilizadores() {
 
@@ -255,12 +254,12 @@ function ListUtilizadores() {
             else
               Cargo = data.Cargo.descricao
 
-            console.log(data.Pnome)
-            console.log(data.Unome)
+            //console.log(data.Pnome)
+            //console.log(data.Unome)
             if(data.Centros[0].Nome != null){
               centros =data.Centros[0].Nome
             }
-            console.log(data.Centros[0].Nome)
+            //console.log(data.Centros[0].Nome)
             /* console.log(DataUtilizadores[index].Centros[0].Nome) */
 
             return(

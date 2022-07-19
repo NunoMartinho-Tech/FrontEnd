@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../scss/adicionar.scss'
 import Container from 'react-bootstrap/Container'
-import Image from 'react-bootstrap/Image'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button';
@@ -112,7 +111,7 @@ function AddUtilizador() {
             const sheetName = workbook.SheetNames[0];
             const worksheet = workbook.Sheets[sheetName];
             json = xlsx.utils.sheet_to_json(worksheet);
-            console.log(json);
+            //console.log(json);
         };
         reader.readAsArrayBuffer(e.target.files[0]);
     }
@@ -276,16 +275,16 @@ function AddUtilizador() {
 
 
   function SendSave(){
-    console.log(json)
+    //console.log(json)
     if(!json){
-      console.log("entrei no if ")
+      /* console.log("entrei no if ")
       console.log(PNome)
       console.log(UNome)
       console.log(Email)
       console.log(PalavraPasse)
       console.log(Cargo)
       console.log(TipoGestor)
-      console.log(CentroId)
+      console.log(CentroId) */
         if (PNome==="") {
               Swal.fire('Insira um nome')
           }
@@ -309,7 +308,7 @@ function AddUtilizador() {
           }
           else 
           {
-              if(Cargo == 1){
+              if(Cargo === 1){
                 datapost = {
                   PNome : PNome,
                   UNome : UNome,
@@ -330,7 +329,7 @@ function AddUtilizador() {
                   Centros: CentroId
                 }
               }
-              console.log(datapost)
+              //console.log(datapost)
               axios.post("utilizadores/register",datapost)
               .then(response=>{
               if (response.data.sucesso===true) {

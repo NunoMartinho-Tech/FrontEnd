@@ -10,7 +10,6 @@ import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import {BsFillCalendarDateFill}  from 'react-icons/bs';
 import { IconContext } from "react-icons";
-import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
 import Menu from '../../components/NavBar/SideBar';
 
@@ -35,7 +34,7 @@ function PerfilUtilizador() {
         }
         axios.get('reservas/listReservas/'+id,datapost)
         .then(response=>{
-          console.log(response.data.data)
+          //console.log(response.data.data)
             if(response.data.sucesso){
                 setDataReservas(response.data.data)
             }else{
@@ -45,7 +44,7 @@ function PerfilUtilizador() {
       }else{
         axios.get('reservas/todasreservas/'+id)
         .then(response=>{
-          console.log(response.data.data)
+          //console.log(response.data.data)
             if(response.data.sucesso){
                 setDataReservas(response.data.data)
             }else{
@@ -124,8 +123,8 @@ function PerfilUtilizador() {
     } 
 
     function SendAtivarDesativar(id, estado){
-      console.log(id)
-      console.log(estado)
+      /* console.log(id)
+      console.log(estado) */
         if(estado === 1){ 
           axios.put('reservas/desativar/' + id)
           .then(res => {
@@ -172,7 +171,7 @@ function PerfilUtilizador() {
     }
 
     function onAtivarDesativar(id, estado){
-      console.log(estado)
+      //console.log(estado)
       if(estado===1){
         Swal.fire({
             title: 'Deseja ativar esta reserva?',
