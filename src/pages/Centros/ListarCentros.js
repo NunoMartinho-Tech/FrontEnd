@@ -249,7 +249,8 @@ function ListarCentros() {
                         <button className={botaoEliminar} type="button" onClick={()=>OnDelete(data.id)}>Eliminar</button>
                     </td>
                     <td>
-                        <button className={botaoAtivarDesativar} type="button" onClick={()=>onAtivarDesativar(data.id,data.Estado.id)}>{botaoEstado}</button>
+                        <button className={botaoAtivarDesativar} type="button" 
+                        onClick={()=>onAtivarDesativar(data.id,data.Estado.id)}>{botaoEstado}</button>
                     </td>
                 </tr>
             )

@@ -48,7 +48,8 @@ function Login() {
                 <Form>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>E-mail</Form.Label>
-                      <Form.Control type="email" placeholder="Insira o seu e-mail" className='inputLogin rounded' value={email} onChange={(value)=>SetEmail(value.target.value)}/>
+                      <Form.Control type="email" placeholder="Insira o seu e-mail" className='inputLogin rounded' value={email} 
+                      onChange={(value)=>SetEmail(value.target.value)}/>
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicPassword">
                       <Form.Label>Password</Form.Label>

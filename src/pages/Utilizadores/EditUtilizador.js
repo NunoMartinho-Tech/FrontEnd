@@ -51,23 +51,23 @@ function EditUtilizador() {
         setEmail(response.data.data.Email)
         setCargo(response.data.data.CargoId)
         setTipoGestor(response.data.data.TiposGestorId)
+        setCentroId(response.data.data.CentroId)
       }else{
         console.log('Nao foi possivel obter as informacoes do user');
       }
     })
   },[])
 
-  useEffect(()=>{
+  /* useEffect(()=>{
     axios.get('utilizadores/pertence/'+id)
     .then(response=>{
       if(response.data.sucesso){
         setCentroId(response.data.data.CentroId)
-        
       }else{
         console.log('Nao foi possivel obter as informacoes do user');
       }
     })
-  },[])
+  },[]) */
 
   useEffect(()=> {
         if(tipoGestor === 1){
@@ -221,7 +221,6 @@ function EditUtilizador() {
   )
 
   function LoadCentro(){
-    
             return (
                 <option value={UmCentro.id}>{UmCentro.Nome}</option>
             )
