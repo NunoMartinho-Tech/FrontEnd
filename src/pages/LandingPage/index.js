@@ -9,7 +9,6 @@ import Col from 'react-bootstrap/Col'
 import '../../scss/LandingPage.scss';
 
 function LandingPage() {
-
   return (
     <Container fluid>
           <NavBar/>

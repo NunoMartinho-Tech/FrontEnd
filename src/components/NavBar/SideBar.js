@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 const routes = [
     {
         path: "/home/dashboard",
-        name: "Dasboard",
+        name: "Dashboard",
         icon: <AiFillDashboard/>
     },
     {
