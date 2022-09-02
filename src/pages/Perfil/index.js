@@ -125,7 +125,7 @@ function Perfil() {
                 </Form.Group>
               </Col>
             </Row>
-            <Row className='pt-2'>
+            <Row className='pt-2 pb-4'>
               <Col>
                 <Form.Group>
                   <Form.Label className='formulario-label-input'>Centro</Form.Label>
@@ -134,11 +134,11 @@ function Perfil() {
                 </Form.Group>
               </Col>
             </Row>
-            <Row className='py-4'>
+            {/* <Row className='py-4'>
                 <Col className='d-flex justify-content-end px-5'>
                     <Link className="btn btn-warning botaoAcao mx-2" to={"/home/utilizadores/edit/" + id}>Editar</Link>
                 </Col>
-            </Row>
+            </Row> */}
           </Form>
           </div>
         </Col>

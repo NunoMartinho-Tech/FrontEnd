@@ -194,7 +194,6 @@ function AddUtilizador() {
                   <Form.Group className='py-2'>
                     <Form.Label className='formulario-label-input'>Centros</Form.Label>
                     <Form.Select value={CentroId} onChange={(value) => setCentroId(value.target.value)} className='formulario-input' size="sm">
-                      <option>Selecione um Centro</option>
                           if(tipoGestor === 1)
                             <LoadCentroData />
                           else
@@ -228,7 +227,6 @@ function AddUtilizador() {
   )
 
   function LoadCentro(){
-    
             return (
                 <option value={UmCentro.id}>{UmCentro.Nome}</option>
             )
@@ -284,7 +282,7 @@ function AddUtilizador() {
       console.log(PalavraPasse)
       console.log(Cargo)
       console.log(TipoGestor)
-      console.log(CentroId) */
+      console.log(CentroId)   */
         if (PNome==="") {
               Swal.fire('Insira um nome')
           }
@@ -308,7 +306,7 @@ function AddUtilizador() {
           }
           else 
           {
-              if(Cargo === 1){
+              if(Cargo == 1){
                 datapost = {
                   PNome : PNome,
                   UNome : UNome,
@@ -329,7 +327,7 @@ function AddUtilizador() {
                   Centros: CentroId
                 }
               }
-              //console.log(datapost)
+              console.log(datapost)
               axios.post("utilizadores/register",datapost)
               .then(response=>{
               if (response.data.sucesso===true) {
@@ -347,8 +345,6 @@ function AddUtilizador() {
                       'error'
                   )
               } 
-              }).catch(error=>{
-                  alert(error)
               })
           }
     }else{

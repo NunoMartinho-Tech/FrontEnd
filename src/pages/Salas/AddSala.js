@@ -114,7 +114,6 @@ function AddSala() {
                     <Form.Label className='formulario-label-input'>Centros</Form.Label>
 
                     <Form.Select size="sm" value={CentroId} onChange={(value) => setCentroId(value.target.value)} className='formulario-input'>
-                          <option>Selecione um Centro</option>
                           if(tipoGestor === 1)
                             <LoadCentroData />
                           else
