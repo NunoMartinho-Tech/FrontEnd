@@ -133,6 +133,12 @@ function ListarSalas() {
                     'success'
                 )
               LoadData()
+            }else{
+                    Swal.fire(
+                    'Erro!',
+                    response.data.message,
+                    'error'
+                    )
             }
           })
         }
@@ -157,6 +163,12 @@ function ListarSalas() {
                           'success'
                       )
                       LoadData()
+                  }else{
+                    Swal.fire(
+                    'Erro!',
+                    response.data.message,
+                    'error'
+                    )
                   }
                 })
                 .catch ( error => {

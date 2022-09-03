@@ -114,6 +114,12 @@ function ListarCentros() {
                     'success'
                 )
                 LoadData()
+            }else{
+              Swal.fire(
+                    'Erro!',
+                    response.data.message,
+                    'error'
+                )
             }
           })
           .catch ( error => {
@@ -129,6 +135,12 @@ function ListarCentros() {
                     'success'
                 )
                 LoadData()
+            }else{
+              Swal.fire(
+                    'Erro!',
+                    response.data.message,
+                    'error'
+                )
             }
           })
           .catch ( error => {
@@ -182,6 +194,12 @@ function ListarCentros() {
                     'success'
                 )
                 LoadData()
+            }else{
+              Swal.fire(
+                    'Erro!',
+                    response.data.message,
+                    'error'
+                )
             }
         })
         .catch ( error => {
