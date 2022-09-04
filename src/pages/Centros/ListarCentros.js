@@ -117,7 +117,7 @@ function ListarCentros() {
             }else{
               Swal.fire(
                     'Erro!',
-                    response.data.message,
+                    res.data.message,
                     'error'
                 )
             }
@@ -138,7 +138,7 @@ function ListarCentros() {
             }else{
               Swal.fire(
                     'Erro!',
-                    response.data.message,
+                    res.data.message,
                     'error'
                 )
             }

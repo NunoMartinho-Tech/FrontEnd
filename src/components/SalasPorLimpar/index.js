@@ -23,7 +23,19 @@ function Limpeza(props) {
     },[props.centroid])
 
     useEffect(() => {
+        const timer = setInterval(()=>{
+            axios.get('centros/salasporlimpar/'+props.centroid)
+            .then(res=>{
+                console.log(res)
+                if(res.data.sucesso){
+                    console.log(res.data.data)
+                    setdata(res.data.data)
+                }
+            })
+            .catch((err=>{console.log(err)}))
+        },10000)
         LoadTableData();
+        return () => clearInterval(timer)
     },[]);
 
   return (

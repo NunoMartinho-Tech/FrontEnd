@@ -136,7 +136,7 @@ function ListarSalas() {
             }else{
                     Swal.fire(
                     'Erro!',
-                    response.data.message,
+                    res.data.message,
                     'error'
                     )
             }
@@ -166,7 +166,7 @@ function ListarSalas() {
                   }else{
                     Swal.fire(
                     'Erro!',
-                    response.data.message,
+                    res.data.message,
                     'error'
                     )
                   }
