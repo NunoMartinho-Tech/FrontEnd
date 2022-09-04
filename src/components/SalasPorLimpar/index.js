@@ -8,33 +8,28 @@ import '../../scss/dashboard.scss'
 
 function Limpeza(props) {
 
-    const [data, setdata] = useState([])
-
-    useEffect(()=>{
-        //console.log(props.centroid)
-        axios.get('centros/salasporlimpar/'+props.centroid)
-        .then(res=>{
-            console.log(res)
-            if(res.data.sucesso){
-                console.log(res.data.data)
-                setdata(res.data.data)
-            }
-        })
-    },[props.centroid])
+    const [dataSala, setdataSala] = useState([])
+    //const [CentroId, setCentroId] = useState()
+    //console.log("Variavel centroId: ",props.centroid)
 
     useEffect(() => {
+        //setCentroId(props.centroid)
+        //console.log("CentroId:", CentroId)
         const timer = setInterval(()=>{
             axios.get('centros/salasporlimpar/'+props.centroid)
             .then(res=>{
-                console.log(res)
+                console.log("Data: ",res.data)
                 if(res.data.sucesso){
-                    console.log(res.data.data)
-                    setdata(res.data.data)
+                    //console.log("Data: ",res.data.data)
+                    setdataSala(res.data.data)
+                    //console.log("Variavel data:", dataSala)
+                }else{
+                    setdataSala([])
                 }
             })
-            .catch((err=>{console.log(err)}))
-        },10000)
-        LoadTableData();
+            .catch((err=>{console.log("Erro: ",err)}))
+        },15000)
+        LoadTableData()
         return () => clearInterval(timer)
     },[]);
 
@@ -64,9 +59,7 @@ function Limpeza(props) {
   )
 
   function LoadTableData(){
-
-        return data.map((data, index)=>{
-
+        return dataSala.map((data, index)=>{
             return(
                 <tr key={index}>
                     <td>{index+1}</td>
