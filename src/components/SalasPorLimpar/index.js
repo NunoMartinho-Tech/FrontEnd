@@ -9,29 +9,33 @@ import '../../scss/dashboard.scss'
 function Limpeza(props) {
 
     const [dataSala, setdataSala] = useState([])
-    //const [CentroId, setCentroId] = useState()
-    //console.log("Variavel centroId: ",props.centroid)
-
+    const [centroID, setcentroID] = useState("")
+    console.log(props)
     useEffect(() => {
-        //setCentroId(props.centroid)
-        //console.log("CentroId:", CentroId)
         const timer = setInterval(()=>{
-            axios.get('centros/salasporlimpar/'+props.centroid)
-            .then(res=>{
-                console.log("Data: ",res.data)
-                if(res.data.sucesso){
-                    //console.log("Data: ",res.data.data)
-                    setdataSala(res.data.data)
-                    //console.log("Variavel data:", dataSala)
-                }else{
-                    setdataSala([])
-                }
-            })
-            .catch((err=>{console.log("Erro: ",err)}))
+            setcentroID(props.centroid)
+            console.log("Ainda nao entrei no if", centroID)
+            if(centroID.length !== 0){
+                console.log("Entrei")
+                /**O problema esta nesta merda nao esta a ir buscar bem o id do centro */
+                console.log(props.centroid)
+                axios.get('centros/salasporlimpar/'+1)
+                .then(res=>{
+                    console.log("Data: ",res.data)
+                    if(res.data.sucesso){
+                        console.log("Data: ",res.data.data)
+                        setdataSala(res.data.data)
+                        console.log("Variavel data:", dataSala)
+                    }else{
+                        setdataSala([])
+                    }
+                })
+                .catch((err=>{console.log("Erro: ",err)}))
+            }
         },15000)
         LoadTableData()
         return () => clearInterval(timer)
-    },[]);
+    });
 
   return (
     <Container className='TabelasSalasPorLimpar'>
