@@ -22,7 +22,7 @@ function Hero() {
                         <br />
                     </Container>
                     <Container className='d-flex justify-content-start mx-3'>
-                        <Button variant="primary" size="lg" className=' my-3'>Fazer download da app</Button>
+                        <Button variant="primary" size="lg" className=' my-3' href="#">Fazer download da app</Button>
                     </Container>
                 </Col>
                 <Col className="d-flex justify-content-center d-none d-sm-block" sm={4} md={6}>

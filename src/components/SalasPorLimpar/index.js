@@ -19,7 +19,7 @@ function Limpeza(props) {
                 console.log("Entrei")
                 /**O problema esta nesta merda nao esta a ir buscar bem o id do centro */
                 console.log(props.centroid)
-                axios.get('centros/salasporlimpar/'+1)
+                axios.get('centros/salasporlimpar/'+props.centroid)
                 .then(res=>{
                     console.log("Data: ",res.data)
                     if(res.data.sucesso){
